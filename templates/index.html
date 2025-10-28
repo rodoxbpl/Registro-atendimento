@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Atendimentos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #f2f2f2; border-bottom: 1px solid #ccc;">
+        <div><strong>👤 Usuário logado:</strong> {{ usuario }}</div>
+        <div><a href="{{ url_for('logout') }}" style="text-decoration: none; color: red;">Sair</a></div>
+    </header>
+
+    <h1 style="text-align: center;">Registro de Atendimentos</h1>	
+	
+    <div class="form-container">
+	
+	
+        <form id="formAtendimento">
+            <label>Telefone:</label>
+            <input type="text" id="telefone"><br>
+
+            <label>Nome do Estabelecimento:</label>
+            <input type="text" id="nomeEstabelecimento"><br>
+
+            <label>Nome do Cliente:</label>
+            <input type="text" id="nomeCliente"><br>
+
+            <label>Tipo de Problema:</label>
+            <select id="tipoProblema"></select><br>
+
+            <label>Descrição do Problema:</label>
+            <textarea id="descricao"></textarea><br>
+
+            <div class="button-group">
+				<button type="submit">Cadastrar</button>
+				<button type="button" id="btnHistorico">Histórico</button>
+			</div>
+        </form>
+        <p id="mensagem"></p>	
+
+		<!-- Modal Histórico -->
+    	<div id="modalHistorico" class="modal">
+			<div class="modal-conteudo">
+				<span class="fechar">&times;</span>
+				<h2>Histórico de Atendimentos</h2>
+
+				<div class="filtros">
+					<label>Data Inicial:</label>
+					<input type="date" id="dataInicio">
+					<label>Data Final:</label>
+					<input type="date" id="dataFim"><br>
+					<label>Telefone:</label>
+					<input type="text" id="filtroTelefone">
+					<label>Estabelecimento:</label>
+					<input type="text" id="filtroEstabelecimento">
+					<label>Usuário:</label>
+					<input type="text" id="filtroUsuario">
+					<button id="btnFiltrar">Filtrar</button>
+				</div>
+
+				<table id="tabelaHistorico">
+					<thead>
+						<tr>
+							<th>Usuário</th>
+							<th>Data e Hora</th>
+							<th>Telefone</th>
+							<th>Cliente</th>
+							<th>Estabelecimento</th>
+							<th>Tipo</th>
+							<th>Descrição</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+		
+	<img src="/media/logo.png" class="logo"></img>
+	<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+	</div>
+	<div id="total-pai">
+		<div id="totais-container">
+			<div class="info-box1">
+				<strong>Meus atendimentos:</strong>
+				<span id="total-usuario">0</span>
+			</div>
+			<div class="info-box2">
+				<strong>Atendimentos totais:</strong>
+				<span id="total-geral">0</span>
+			</div>
+		</div>
+	</div>
+</html>

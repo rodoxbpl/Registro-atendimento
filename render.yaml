@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: atendimento
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: atendimento-db
+          property: connectionString
+
+databases:
+  - name: atendimento-db
+    databaseName: atendimento
+    user: atendimento_user
